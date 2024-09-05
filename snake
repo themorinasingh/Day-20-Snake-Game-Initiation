@@ -1,0 +1,36 @@
+from turtle import Turtle, Screen
+from time import sleep
+
+screen = Screen()
+screen.setup(height=600, width=600)
+screen.bgcolor("black")
+screen.title("The Snake Game")
+screen.tracer(0)
+
+positions = [(0,0), (-20,0), (-40,0)]
+snake_body = []
+
+for position in positions:
+    new_segment = Turtle("circle")
+    new_segment.color("white")
+    new_segment.penup()
+    new_segment.goto(position)
+    snake_body.append(new_segment)
+
+game_is_on = True
+
+while game_is_on:
+    screen.update()
+    sleep(.2) #stops execution for .2 seconds, and in other words it adds a gap of .2 in the loop
+    for i in range(len(snake_body)-1, 0, -1):
+        new_x = snake_body[i - 1].xcor()
+        new_y = snake_body[i - 1].ycor()
+        snake_body[i].goto(new_x, new_y)
+    snake_body[0].forward(20)
+
+
+
+
+
+
+screen.exitonclick()
